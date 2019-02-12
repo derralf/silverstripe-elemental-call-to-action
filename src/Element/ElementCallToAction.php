@@ -20,9 +20,9 @@ class ElementCallToAction extends BaseElement
 
     private static $table_name = 'ElementCallToAction';
 
-    private static $singular_name = 'CTA-Element, einfach mit Button';
-    private static $plural_name = 'CTA-Elemente, einfach mit Button';
-    private static $description = '';
+    private static $singular_name = 'Call to Action';
+
+    private static $plural_name = 'Call to Action';
 
     private static $db = [
         'HTML'                    => 'HTMLText',
@@ -34,6 +34,7 @@ class ElementCallToAction extends BaseElement
 
     ];
 
+<<<<<<< HEAD
     private static $has_many = [
     ];
 
@@ -46,20 +47,22 @@ class ElementCallToAction extends BaseElement
 
     private static $defaults = [
     ];
+=======
+    private static $inline_editable = false;
+>>>>>>> 4dd6a41... Internationalisation
 
     private static $colors = [];
 
-
-    private static $field_labels = [
-        'Title' => 'Titel',
-        'Sort' 	=>	'Sortierung'
-    ];
-
-    public function FieldLabels($includerelations = true)
+    public function fieldLabels($includerelations = true)
     {
-        $labels = parent::fieldLabels($includerelations=true);
+        $labels = parent::fieldLabels($includerelations);
+
         $labels['Color'] = _t(__CLASS__ . '.ColorLabel', 'Color');
         $labels['ReadMoreLink'] = _t(__CLASS__ . '.ReadMoreLinkLabel', 'ReadMoreLink');
+        $labels['Title'] = _t(__CLASS__ . '.TitleLabel', 'Title');
+        $labels['Sort'] = _t(__CLASS__ . '.SortLabel', 'Sort');
+
+        return $labels;
     }
 
     public function getCMSFields()
@@ -80,7 +83,7 @@ class ElementCallToAction extends BaseElement
 
             $colors = $this->config()->get('colors');
             if ($colors && count($colors) > 0) {
-                $colorDropdown = DropdownField::create('Color', _t(__CLASS__.'.COLOR', 'Color variation'), $colors);
+                $colorDropdown = DropdownField::create('Color', $this->fieldLabel('Color'), $colors);
 
                 $fields->insertBefore($colorDropdown, 'HTML');
 
