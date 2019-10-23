@@ -34,7 +34,6 @@ class ElementCallToAction extends BaseElement
 
     ];
 
-<<<<<<< HEAD
     private static $has_many = [
     ];
 
@@ -47,9 +46,9 @@ class ElementCallToAction extends BaseElement
 
     private static $defaults = [
     ];
-=======
+
     private static $inline_editable = false;
->>>>>>> 4dd6a41... Internationalisation
+
 
     private static $colors = [];
 
